@@ -27,13 +27,30 @@ describe("Game", function() {
   });
 
   describe("spread", function() {
-
-
     it("adds one default infestation to each of the locations drawn.", function() {
       game.spread();
       expect(game.locations["Ravenna Park"].infestationAmounts).toEqual({"Mini Mammoths": 0, "Safety Cones": 0, "Tiny Velociraptors": 0, "Tribbles": 1});
       expect(game.locations["Neptune Theater"].infestationAmounts).toEqual({"Mini Mammoths": 0, "Safety Cones": 0, "Tiny Velociraptors": 0, "Tribbles": 1});
     });
   });
+
+  describe('epidemic', function() {
+    it('increases infestation rate by one', function() {
+      game.epidemic();
+      expect(game.infestationRate).toEqual(3);
+    });
+
+    it('adds 3 infestation units to drawn location card', function() {
+      game.epidemic();
+      expect(game.locations["Archie McPhees"].infestationAmounts).toEqual({"Mini Mammoths": 3, "Safety Cones": 0, "Tiny Velociraptors": 0, "Tribbles": 0});
+    });
+
+    it('moves all locations back to location draw pile', function() {
+      game.epidemic();
+      expect(game.locationDraw.length).toEqual(20);
+      expect(game.locationDiscard.length).toEqual(0);
+    });
+  });
+
 
 });
