@@ -13,13 +13,17 @@ describe("Game", function() {
   });
 
   it("creates and stores a location object for each location", function() {
-    expect(game.locations[0].name).toEqual('Ravenna Park');
-    expect(game.locations[0].neighborhood).toEqual('U-District');
-    expect(game.locations[0].infestationDefault).toEqual('Tribbles');
-    expect(game.locations[0].nextDoor).toEqual(["Neptune Theater", "Cafe Allegro"]);
+    expect(game.locations['Ravenna Park'].name).toEqual('Ravenna Park');
+    expect(game.locations['Ravenna Park'].neighborhood).toEqual('U-District');
+    expect(game.locations['Ravenna Park'].infestationDefault).toEqual('Tribbles');
+  });
+
+  it("stores each location's nextDoor locations", function() {
+    expect(game.locations['Archie McPhees'].nextDoor).toEqual([game.locations['Fremont Troll'], game.locations['Neptune Theater']]);
   });
 
   it("stores the status of each neighborhood", function() {
     expect(game.neighborhoodStatus).toEqual({"Frellard": 0, "Capitol Hill": 0, "Downtown": 0, "U-District": 0});
   });
+
 });

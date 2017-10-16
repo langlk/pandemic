@@ -37,15 +37,33 @@ export class Game {
       "Ballard Locks": ["Frellard", "Lenin", "Fremont Troll"],
       "Fremont Troll": ["Frellard", "Ballard Locks", "Lenin", "Gasworks", "Archie McPhees"],
       "Archie McPhees": ["Frellard", "Fremont Troll", "Neptune Theater"]};
-    this.locations = [];
+    this.locations = {};
     Object.keys(locationInfo).forEach((name) => {
       let neighborhood = locationInfo[name][0];
       let infestationDefault = infestationInfo[neighborhood];
       let nextDoor = locationInfo[name].slice(1);
       let location = new Location(name, neighborhood, infestationDefault, nextDoor);
-      this.locations.push(location);
+      this.locations[name] = location;
+    });
+
+    Object.keys(this.locations).forEach((name) => {
+      let location = this.locations[name];
+      // location.nextDoor = ["Fremont Troll", "Neptune Theater"]
+      for (let i = 0; i < location.nextDoor.length; i++) {
+        location.nextDoor[i] = this.locations[location.nextDoor[i]];
+      }
     });
     // Each time a location hits 3, add 1 to neighborhood status. If status hits 5, game is over. If infestation goes down, remove one from status.
     this.neighborhoodStatus = {"Frellard": 0, "Capitol Hill": 0, "Downtown": 0, "U-District": 0};
   }
+
+  spread() {
+    // for i <= rate {
+      // shift a location off Draw
+      // infect() that location with its default infestation
+      // unshift location onto Discard
+
+  }
+
+
 }
