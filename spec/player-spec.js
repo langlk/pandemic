@@ -4,8 +4,9 @@ import { Game } from './../js/game.js';
 describe('player', function() {
   let player;
   let game;
+
   beforeEach(function() {
-    game = new Game();
+    game = new Game(15000);
     player = new Player(game.locations["Epicodus"]);
   });
 

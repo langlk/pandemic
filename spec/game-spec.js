@@ -4,7 +4,12 @@ describe("Game", function() {
   let game;
 
   beforeEach(function() {
-    game = new Game();
+    jasmine.clock().install();
+    game = new Game(15000);
+  });
+
+  afterEach(function() {
+    jasmine.clock().uninstall();
   });
 
   it("creates and stores an infestation object for each infestation", function() {
@@ -29,8 +34,16 @@ describe("Game", function() {
   describe("spread", function() {
     it("adds one default infestation to each of the locations drawn.", function() {
       game.spread();
+      jasmine.clock().tick(60001);
       expect(game.locations["Ravenna Park"].infestationAmounts).toEqual({"Mini Mammoths": 0, "Safety Cones": 0, "Tiny Velociraptors": 0, "Tribbles": 1});
       expect(game.locations["Neptune Theater"].infestationAmounts).toEqual({"Mini Mammoths": 0, "Safety Cones": 0, "Tiny Velociraptors": 0, "Tribbles": 1});
+    });
+
+    it("removes locations from draw pile and adds them to the discard pile", function() {
+      game.spread();
+      jasmine.clock().tick(60001);
+      expect(game.locationDraw.length).toEqual(18);
+      expect(game.locationDiscard.length).toEqual(2);
     });
   });
 
@@ -52,5 +65,10 @@ describe("Game", function() {
     });
   });
 
+  describe('start', function() {
+    it('starts clock on infestation spread intervals', function() {
+
+    });
+  });
 
 });

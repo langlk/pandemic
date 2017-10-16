@@ -4,7 +4,8 @@ import { Player } from './../js/player.js';
 
 
 export class Game {
-  constructor(){
+  constructor(timeUnit){
+    this.timeUnit = timeUnit;
     this.locationDraw = [];
     this.locationDiscard = [];
     this.cures = {"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": false, "Tribbles": false};
@@ -60,11 +61,15 @@ export class Game {
   }
 
   spread() {
-    for (let i = 0; i < this.infestationRate; i++){
-      let location = this.locationDraw.shift();
-      location.infest(location.infestationDefault);
-      this.locationDiscard.unshift(location);
-    }
+    console.log("Currently in spread");
+    setInterval(() => {
+      for (let i = 0; i < this.infestationRate; i++){
+        let location = this.locationDraw.shift();
+        location.infest(location.infestationDefault);
+        this.locationDiscard.unshift(location);
+      }
+    }, this.timeUnit * 4);
+
   }
 
   epidemic() {
@@ -91,9 +96,25 @@ export class Game {
   }
 
   start() {
-    // set up interval for spread/epidemic
-    // shuffle deck
+    this.locationDraw = this.shuffle(this.locationDraw);
+    for (let i = 3; i > 0; i--) {
+      let location = this.locationDraw.shift();
+      for (let j = i; j > 0; j--) {
+        location.infest(location.infestationDefault);
+      }
+      this.locationDiscard.unshift(location);
+    }
+    this.spread();
 
+    // setInterval(() => {
+    //   if (Math.floor(Math.random() * 8) === 1) {
+    //     console.log("Epidemic!");
+    //     self.epidemic();
+    //   }
+    //   console.log('starting spread');
+    //   debugger;
+    //   self.spread();
+    //   console.log(self.locationDraw);
+    // }, self.timeUnit * 4);
   }
-
 }
