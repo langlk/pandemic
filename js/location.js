@@ -7,12 +7,14 @@ export class Location {
     this.infestationAmounts = {"Mini Mammoths": 0, "Safety Cones": 0, "Tiny Velociraptors": 0, "Tribbles": 0};
   }
 
-  infest(location, infestation) {
+  infest(infestation) {
     if (this.infestationAmounts[infestation] < 3) {
       this.infestationAmounts[infestation] += 1;
     } else {
-      //outbreak
-
+      // Outbreak!
+      this.nextDoor.forEach(function(location) {
+        location.infest(infestation);
+      });
     }
   }
 }
