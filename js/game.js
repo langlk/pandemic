@@ -1,6 +1,6 @@
 import { Infestation } from './../js/infestation.js';
 import { Location } from './../js/location.js';
-// import { Player } from './../js/player.js';
+import { Player } from './../js/player.js';
 
 
 export class Game {
@@ -56,6 +56,7 @@ export class Game {
     });
     // Each time a location hits 3, add 1 to neighborhood status. If status hits 5, game is over. If infestation goes down, remove one from status.
     this.neighborhoodStatus = {"Frellard": 0, "Capitol Hill": 0, "Downtown": 0, "U-District": 0};
+    this.player = new Player(this.locations["Epicodus"]);
   }
 
   spread() {
@@ -87,6 +88,12 @@ export class Game {
       deck[j] = temp;
     }
     return deck;
+  }
+
+  start() {
+    // set up interval for spread/epidemic
+    // shuffle deck
+
   }
 
 }

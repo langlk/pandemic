@@ -1,6 +1,6 @@
 export class Player {
-  constructor() {
-    this.location = null;
+  constructor(startLocation) {
+    this.location = startLocation;
     this.cures = {"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": false, "Tribbles": false};
   }
 

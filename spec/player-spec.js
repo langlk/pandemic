@@ -5,8 +5,8 @@ describe('player', function() {
   let player;
   let game;
   beforeEach(function() {
-    player = new Player();
     game = new Game();
+    player = new Player(game.locations["Epicodus"]);
   });
 
   describe('move', function() {
