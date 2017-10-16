@@ -1,6 +1,7 @@
 export class Player {
   constructor() {
     this.location = null;
+    this.cures = {"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": false, "Tribbles": false};
   }
 
   move(destination) {
@@ -12,5 +13,17 @@ export class Player {
     }
   }
 
+  treat(infestation) {
+    if(this.location.infestationAmounts[infestation] > 0) {
+      if(this.cures[infestation]) {
+        this.location.infestationAmounts[infestation] = 0;
+      } else {
+        this.location.infestationAmounts[infestation] -= 1;
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }
