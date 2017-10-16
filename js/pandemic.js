@@ -9,8 +9,8 @@
 // - neighborhood's infestation status
 // win()
 // lose()
-// spread()
-// epidemic()
+// spread() X
+// epidemic() X
 
 // location
 // - name
