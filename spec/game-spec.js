@@ -11,4 +11,11 @@ describe("Game", function() {
     expect(game.infestations[0].name).toEqual('Mini Mammoths');
     expect(game.infestations[0].neighborhood).toEqual('Frellard');
   });
+
+  it("creates and stores a location object for each location", function() {
+    expect(game.locations[0].name).toEqual('Ravenna Park');
+    expect(game.locations[0].neighborhood).toEqual('U-District');
+    expect(game.locations[0].infestationDefault).toEqual('Tribbles');
+    expect(game.locations[0].nextDoor).toEqual(["Neptune Theater", "Cafe Allegro"]);
+  });
 });
