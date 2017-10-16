@@ -26,4 +26,7 @@ export class Player {
     }
   }
 
+  cure(infestation) {
+    this.cures[infestation] = true;
+  }
 }

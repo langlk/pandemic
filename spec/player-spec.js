@@ -42,7 +42,6 @@ describe('player', function() {
       player.treat("Tribbles");
       expect(player.location.infestationAmounts["Tribbles"]).toEqual(0);
     });
-
   });
 
 });
