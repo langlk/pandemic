@@ -18,4 +18,8 @@ describe("Game", function() {
     expect(game.locations[0].infestationDefault).toEqual('Tribbles');
     expect(game.locations[0].nextDoor).toEqual(["Neptune Theater", "Cafe Allegro"]);
   });
+
+  it("stores the status of each neighborhood", function() {
+    expect(game.neighborhoodStatus).toEqual({"Frellard": 0, "Capitol Hill": 0, "Downtown": 0, "U-District": 0});
+  });
 });
