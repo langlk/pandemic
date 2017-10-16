@@ -6,7 +6,7 @@
 
 ## Description
 
-_This program calculates a user's age and life expectancy based on their birthdate, and gender, then converts both amounts into years on the following planets: Mercury, Venus, Earth, Mars, and Jupiter._
+_This is a web app variation on the game Pandemic. Instead of diseases, the player combats infestations of Tribbles, Safety Cones, Miniature Mammoths, and Tiny Velociraptors in Seattle neighborhoods. Instead of being turn-based, gameplay is based on real-time intervals._
 
 ## Setup/Installation Requirements
 
