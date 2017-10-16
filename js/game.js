@@ -5,7 +5,7 @@ import { Location } from './../js/location.js';
 
 export class Game {
   constructor(){
-    this.locationDraw = ["Ravenna Park", "Neptune Theater", "Cafe Allegro", "Suzzallo Library", "College Inn", "Volunteer Park", "Sizzle Pie", "Mercury", "Century Ballroom", "Julia's", "Convention Center", "Central Library", "Epicodus", "Pike Place", "Space Needle", "Lenin", "Gasworks", "Ballard Locks", "Fremont Troll", "Archie McPhees"];
+    this.locationDraw = [];
     this.locationDiscard = [];
     this.cures = {"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": false, "Tribbles": false};
     this.infestationRate = 2;
@@ -44,6 +44,7 @@ export class Game {
       let nextDoor = locationInfo[name].slice(1);
       let location = new Location(name, neighborhood, infestationDefault, nextDoor);
       this.locations[name] = location;
+      this.locationDraw.push(location);
     });
 
     Object.keys(this.locations).forEach((name) => {
@@ -58,11 +59,11 @@ export class Game {
   }
 
   spread() {
-    // for i <= rate {
-      // shift a location off Draw
-      // infect() that location with its default infestation
-      // unshift location onto Discard
-
+    for (let i = 0; i < this.infestationRate; i++){
+      let location = this.locationDraw.shift();
+      location.infest(location.infestationDefault);
+      this.locationDiscard.unshift(location);
+    }
   }
 
 

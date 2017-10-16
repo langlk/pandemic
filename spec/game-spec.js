@@ -26,4 +26,14 @@ describe("Game", function() {
     expect(game.neighborhoodStatus).toEqual({"Frellard": 0, "Capitol Hill": 0, "Downtown": 0, "U-District": 0});
   });
 
+  describe("spread", function() {
+
+
+    it("adds one default infestation to each of the locations drawn.", function() {
+      game.spread();
+      expect(game.locations["Ravenna Park"].infestationAmounts).toEqual({"Mini Mammoths": 0, "Safety Cones": 0, "Tiny Velociraptors": 0, "Tribbles": 1});
+      expect(game.locations["Neptune Theater"].infestationAmounts).toEqual({"Mini Mammoths": 0, "Safety Cones": 0, "Tiny Velociraptors": 0, "Tribbles": 1});
+    });
+  });
+
 });
