@@ -106,15 +106,16 @@ export class Game {
     }
     this.spread();
 
+    // WTF is wrong here??
     // setInterval(() => {
     //   if (Math.floor(Math.random() * 8) === 1) {
     //     console.log("Epidemic!");
-    //     self.epidemic();
+    //     this.epidemic();
     //   }
     //   console.log('starting spread');
     //   debugger;
-    //   self.spread();
-    //   console.log(self.locationDraw);
-    // }, self.timeUnit * 4);
+    //   this.spread();
+    //   console.log(this.locationDraw);
+    // }, this.timeUnit * 4);
   }
 }
