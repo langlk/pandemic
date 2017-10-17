@@ -382,7 +382,7 @@ var Player = exports.Player = function () {
 
 var _game = require("./../js/game.js");
 
-var timeUnit = 1000;
+var timeUnit = 1500;
 var startTime = void 0;
 var updateInterval = void 0;
 
@@ -395,6 +395,8 @@ function clearUI() {
   $(".options").html("");
   $("ul ul").html("");
   $(".player-location").removeClass("player-location");
+  $("#needed").html("");
+  $("#acquired").html("");
 }
 
 function updateUI(game) {
@@ -453,6 +455,14 @@ function updateUI(game) {
   });
 
   $(".clock").text(Math.floor((Date.now() - startTime) / timeUnit) + " Turns");
+
+  Object.keys(game.player.cures).forEach(function (infestation) {
+    if (game.player.cures[infestation]) {
+      $('#acquired').append("<li>" + infestation + "</li>");
+    } else {
+      $('#needed').append("<li>" + infestation + "</li>");
+    }
+  });
 }
 
 $(document).ready(function () {

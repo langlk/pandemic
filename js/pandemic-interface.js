@@ -1,6 +1,6 @@
 import { Game } from './../js/game.js';
 
-const timeUnit = 1000;
+const timeUnit = 1500;
 let startTime;
 let updateInterval;
 
@@ -13,6 +13,8 @@ function clearUI() {
   $(".options").html("");
   $("ul ul").html("");
   $(".player-location").removeClass("player-location");
+  $("#needed").html("");
+  $("#acquired").html("");
 }
 
 function updateUI(game) {
@@ -71,6 +73,14 @@ function updateUI(game) {
   });
 
   $(".clock").text(`${Math.floor((Date.now() - startTime) / timeUnit)} Turns`);
+
+  Object.keys(game.player.cures).forEach(function(infestation) {
+    if (game.player.cures[infestation]) {
+      $('#acquired').append(`<li>${infestation}</li>`);
+    } else {
+      $('#needed').append(`<li>${infestation}</li>`);
+    }
+  });
 }
 
 $(document).ready(function() {
