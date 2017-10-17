@@ -137,7 +137,21 @@ export class Game {
   }
 
   neighborhoodOverrun() {
-
+    let neighborhoodStatus = {"Frellard": 0, "Capitol Hill": 0, "Downtown": 0, "U-District": 0};
+    let overrunNeighborhood = false;
+    Object.keys(this.locations).forEach((name) => {
+      let location = this.locations[name];
+      for (let i = 0; i < 4; i++) {
+        let infestationName = this.infestations[i].name;
+        if (location.infestationAmounts[infestationName] >= 3) {
+          neighborhoodStatus[location.neighborhood] += 1;
+          if (neighborhoodStatus[location.neighborhood] >= 5) {
+            overrunNeighborhood = location.neighborhood;
+          }
+        }
+      }
+    });
+    return overrunNeighborhood;
   }
 
   isOver() {

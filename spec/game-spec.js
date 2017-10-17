@@ -87,4 +87,22 @@ describe("Game", function() {
       expect(game.win()).toEqual(true);
     });
   });
+
+  describe("neighborhoodOverrun", function() {
+    it("returns false if no neighborhood is overrun", function() {
+      expect(game.neighborhoodOverrun()).toEqual(false);
+    });
+
+    it("returns neighborhood name when a neighborhood becomes overrun", function() {
+      Object.keys(game.locations).forEach(function(name) {
+        let location = game.locations[name];
+        if (location.neighborhood === "Downtown") {
+          location.infestationAmounts["Tiny Velociraptors"] = 3;
+        }
+      });
+      expect(game.neighborhoodOverrun()).toEqual("Downtown");
+    });
+
+  });
+
 });
