@@ -82,19 +82,39 @@ describe('player', function() {
       expect(player.treat("Tribbles")).toEqual(false);
       expect(player.location.infestationAmounts["Tribbles"]).toEqual(2);
     });
+
+    it("marks infestation as treated by player", function() {
+      player.location = game.locations["Archie McPhees"];
+      player.location.infestationAmounts["Tribbles"] = 2;
+      player.treat("Tribbles");
+      expect(player.treated["Tribbles"]).toEqual(true);
+    })
   });
 
   describe('cure', function() {
     it('will mark a player as busy for four timeUnits when player is creating a cure.', function() {
-      player.cure("Tribbles");
+      player.treated["Tiny Velociraptors"] = true;
+      player.cure("Tiny Velociraptors");
       expect(player.busy).toEqual(true);
       jasmine.clock().tick(60001);
       expect(player.busy).toEqual(false);
     });
 
     it('does not allow player to cure if the player is marked as busy', function() {
+      player.treated["Tiny Velociraptors"] = true;
       player.busy = true;
-      expect(player.cure("Tribbles")).toEqual(false);
+      expect(player.cure("Tiny Velociraptors")).toEqual(false);
+    });
+
+    it("does not allow player to cure infestation outside of that infestation's neighborhood.", function() {
+      player.treated["Mini Mammoths"] = true;
+      expect(player.cure("Mini Mammoths")).toEqual(false);
+      expect(player.cures).toEqual({"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": false, "Tribbles": false});
+    });
+
+    it("does not allow a player to cure an infestation until they have treated it once", function() {
+      expect(player.cure("Tiny Velociraptors")).toEqual(false);
+      expect(player.cures).toEqual({"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": false, "Tribbles": false});
     });
   });
 
