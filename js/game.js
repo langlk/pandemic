@@ -6,6 +6,7 @@ import { Player } from './../js/player.js';
 export class Game {
   constructor(timeUnit){
     this.timeUnit = timeUnit;
+    this.outcome = "Ongoing";
     this.locationDraw = [];
     this.locationDiscard = [];
     this.cures = {"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": false, "Tribbles": false};
@@ -111,7 +112,7 @@ export class Game {
     setTimeout(() => {
       this.epidemic("game");
     }, 1000);
-    
+
     // WTF is wrong here??
     // setInterval(() => {
     //   if (Math.floor(Math.random() * 8) === 1) {
@@ -123,5 +124,31 @@ export class Game {
     //   this.spread();
     //   console.log(this.locationDraw);
     // }, this.timeUnit * 4);
+  }
+
+  win() {
+    
+  }
+
+  neighborhoodOverrun() {
+
+  }
+
+  isOver() {
+    // callback
+    let checkInterval = setInterval(() => {
+      if (this.win()) {
+        this.outcome =  "Win!";
+        endGame();
+      } else if (this.neighborhoodOverrun()) {
+        this.outcome = `Loss: ${this.neighborhoodOverrun()} was overrun.`;
+        endGame();
+      }
+    }, this.timeUnit);
+  }
+
+  endGame() {
+    //clear spread, epidemic, and isOver intervals
+
   }
 }
