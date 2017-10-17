@@ -383,6 +383,8 @@ var Player = exports.Player = function () {
 var _game = require("./../js/game.js");
 
 var timeUnit = 1000;
+var startTime = void 0;
+var updateInterval = void 0;
 
 function IDify(string) {
   string = string.split(" ").join("-");
@@ -396,11 +398,18 @@ function clearUI() {
 }
 
 function updateUI(game) {
+  if (game.outcome === "Win!") {
+    $(".outcome").text("Victory! Seattle is Saved!");
+    clearInterval(updateInterval);
+  } else if (game.outcome !== "Ongoing") {
+    $(".outcome").text(game.outcome);
+    clearInterval(updateInterval);
+  }
+  // We want buttons to be disabled if the player is busy
   var busy = null;
   if (game.player.busy) {
     busy = "disabled";
   }
-  console.log(game);
   clearUI();
   // Show infestation amounts for each location
   Object.keys(game.locations).forEach(function (name) {
@@ -442,6 +451,8 @@ function updateUI(game) {
       });
     }
   });
+
+  $(".clock").text(Math.floor((Date.now() - startTime) / timeUnit) + " Turns");
 }
 
 $(document).ready(function () {
@@ -452,9 +463,10 @@ $(document).ready(function () {
 
   $('#game-start').click(function () {
     game.start();
+    startTime = Date.now();
     console.log(game);
     updateUI(game);
-    setInterval(function () {
+    updateInterval = setInterval(function () {
       updateUI(game);
     }, timeUnit);
   });
