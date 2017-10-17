@@ -6,6 +6,9 @@ import { Player } from './../js/player.js';
 export class Game {
   constructor(timeUnit){
     this.timeUnit = timeUnit;
+    this.spreadInterval;
+    this.epidemicInterval;
+    this.isOverInterval;
     this.outcome = "Ongoing";
     this.locationDraw = [];
     this.locationDiscard = [];
@@ -62,7 +65,7 @@ export class Game {
   }
 
   spread() {
-    setInterval(() => {
+    this.spreadInterval = setInterval(() => {
       for (let i = 0; i < this.infestationRate; i++){
         let location = this.locationDraw.shift();
         location.infest(location.infestationDefault);
@@ -73,7 +76,7 @@ export class Game {
   }
 
   epidemic(mode) {
-    setInterval(() =>  {
+    this.epidemicInterval = setInterval(() =>  {
       if (mode === "test" || Math.floor(Math.random() * 8) === 1) {
         this.infestationRate += 1;
         let location = this.locationDraw.pop();
@@ -111,6 +114,7 @@ export class Game {
     this.spread();
     setTimeout(() => {
       this.epidemic("game");
+      this.isOver();
     }, 1000);
 
     // WTF is wrong here??
@@ -156,19 +160,21 @@ export class Game {
 
   isOver() {
     // callback
-    let checkInterval = setInterval(() => {
+    this.isOverInterval = setInterval(() => {
       if (this.win()) {
         this.outcome =  "Win!";
-        endGame();
+        this.endGame();
       } else if (this.neighborhoodOverrun()) {
         this.outcome = `Loss: ${this.neighborhoodOverrun()} was overrun.`;
-        endGame();
+        this.endGame();
       }
     }, this.timeUnit);
   }
 
   endGame() {
     //clear spread, epidemic, and isOver intervals
-
+    clearInterval(this.spreadInterval);
+    clearInterval(this.epidemicInterval);
+    clearInterval(this.isOverInterval);
   }
 }

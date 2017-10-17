@@ -102,7 +102,28 @@ describe("Game", function() {
       });
       expect(game.neighborhoodOverrun()).toEqual("Downtown");
     });
+  });
 
+  describe('endgame', function() {
+    it("clears all intervals when game is over", function() {
+      game.start();
+      game.endGame();
+      jasmine.clock().tick(60001);
+      expect(game.locationDraw.length).toEqual(17);
+      expect(game.locationDiscard.length).toEqual(3);
+    });
+  });
+
+  describe('isOver', function() {
+    it('sets game outcome to win if game is won and clears intervals', function() {
+      game.start();
+      game.player.cures = {"Mini Mammoths": true, "Safety Cones": true, "Tiny Velociraptors": true, "Tribbles": true};
+      jasmine.clock().tick(16001);
+      expect(game.outcome).toEqual("Win!");
+      jasmine.clock().tick(60001);
+      expect(game.locationDraw.length).toEqual(17);
+      expect(game.locationDiscard.length).toEqual(3);
+    });
   });
 
 });
