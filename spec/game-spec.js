@@ -45,6 +45,15 @@ describe("Game", function() {
       expect(game.locationDraw.length).toEqual(18);
       expect(game.locationDiscard.length).toEqual(2);
     });
+
+    it("shuffles and restocks deck if there are not enough cards left", function() {
+      game.locationDiscard = game.locationDraw;
+      game.locationDraw = [];
+      game.spread();
+      jasmine.clock().tick(60001);
+      expect(game.locationDraw.length).toEqual(18);
+      expect(game.locationDiscard.length).toEqual(2);
+    });
   });
 
   describe('epidemic', function() {

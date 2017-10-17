@@ -66,6 +66,11 @@ export class Game {
 
   spread() {
     this.spreadInterval = setInterval(() => {
+      if (this.locationDraw.length <= this.infestationRate) {
+        this.locationDiscard = this.shuffle(this.locationDiscard);
+        this.locationDraw = this.locationDraw.concat(this.locationDiscard);
+        this.locationDiscard = [];
+      }
       for (let i = 0; i < this.infestationRate; i++){
         let location = this.locationDraw.shift();
         location.infest(location.infestationDefault);
