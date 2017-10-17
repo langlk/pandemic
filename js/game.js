@@ -61,7 +61,6 @@ export class Game {
   }
 
   spread() {
-    console.log("Currently in spread");
     setInterval(() => {
       for (let i = 0; i < this.infestationRate; i++){
         let location = this.locationDraw.shift();
@@ -72,17 +71,21 @@ export class Game {
 
   }
 
-  epidemic() {
-    this.infestationRate += 1;
-    let location = this.locationDraw.pop();
-    for (let i = 0; i < 3; i++) {
-      location.infest(location.infestationDefault);
-    }
-    this.locationDiscard.unshift(location);
-    this.locationDiscard = this.shuffle(this.locationDiscard);
-    // debugger;
-    this.locationDraw = this.locationDiscard.concat(this.locationDraw);
-    this.locationDiscard = [];
+  epidemic(mode) {
+    setInterval(() =>  {
+      if (mode === "test" || Math.floor(Math.random() * 8) === 1) {
+        this.infestationRate += 1;
+        let location = this.locationDraw.pop();
+        for (let i = 0; i < 3; i++) {
+          location.infest(location.infestationDefault);
+        }
+        this.locationDiscard.unshift(location);
+        this.locationDiscard = this.shuffle(this.locationDiscard);
+        // debugger;
+        this.locationDraw = this.locationDiscard.concat(this.locationDraw);
+        this.locationDiscard = [];
+      }
+    }, this.timeUnit * 4);
   }
 
   shuffle(deck) {
@@ -105,7 +108,10 @@ export class Game {
       this.locationDiscard.unshift(location);
     }
     this.spread();
-
+    setTimeout(() => {
+      this.epidemic("game");
+    }, 1000);
+    
     // WTF is wrong here??
     // setInterval(() => {
     //   if (Math.floor(Math.random() * 8) === 1) {

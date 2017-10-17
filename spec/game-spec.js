@@ -49,26 +49,31 @@ describe("Game", function() {
 
   describe('epidemic', function() {
     it('increases infestation rate by one', function() {
-      game.epidemic();
+      game.epidemic("test");
+      jasmine.clock().tick(60001);
       expect(game.infestationRate).toEqual(3);
     });
 
     it('adds 3 infestation units to drawn location card', function() {
-      game.epidemic();
+      game.epidemic("test");
+      jasmine.clock().tick(60001);
       expect(game.locations["Archie McPhees"].infestationAmounts).toEqual({"Mini Mammoths": 3, "Safety Cones": 0, "Tiny Velociraptors": 0, "Tribbles": 0});
     });
 
     it('moves all locations back to location draw pile', function() {
-      game.epidemic();
+      game.epidemic("test");
+      jasmine.clock().tick(60001);
       expect(game.locationDraw.length).toEqual(20);
       expect(game.locationDiscard.length).toEqual(0);
     });
   });
 
   describe('start', function() {
-    it('starts clock on infestation spread intervals', function() {
-
+    it('starts clock on spread intervals', function() {
+      game.start();
+      jasmine.clock().tick(60001);
+      expect(game.locationDraw.length).toEqual(15);
+      expect(game.locationDiscard.length).toEqual(5);
     });
   });
-
 });
