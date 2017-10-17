@@ -82,8 +82,22 @@ describe('player', function() {
       expect(player.treat("Tribbles")).toEqual(false);
       expect(player.location.infestationAmounts["Tribbles"]).toEqual(2);
     });
-
   });
+
+  describe('cure', function() {
+    it('will mark a player as busy for four timeUnits when player is creating a cure.', function() {
+      player.cure("Tribbles");
+      expect(player.busy).toEqual(true);
+      jasmine.clock().tick(60001);
+      expect(player.busy).toEqual(false);
+    });
+
+    it('does not allow player to cure if the player is marked as busy', function() {
+      player.busy = true;
+      expect(player.cure("Tribbles")).toEqual(false);
+    });
+  });
+
 
 
 

@@ -45,6 +45,14 @@ export class Player {
   }
 
   cure(infestation) {
-    this.cures[infestation] = true;
+    if(this.busy) {
+      return false;
+    } else {
+      this.cures[infestation] = true;
+      this.busy = true;
+      setTimeout(() => {
+        this.busy = false;
+      }, this.timeUnit * 4);
+    }
   }
 }
