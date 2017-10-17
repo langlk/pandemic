@@ -34,7 +34,7 @@ export class Game {
       "Julias": ["Capitol Hill", "Volunteer Park", "Century Ballroom", "Convention Center"],
       "Convention Center": ["Downtown", "Julias", "Pike Place", "Central Library", "Space Needle"],
       "Central Library": ["Downtown", "Convention Center", "Epicodus"],
-      "Epicodus": ["Downtown", "Library", "Pike Place"],
+      "Epicodus": ["Downtown", "Central Library", "Pike Place"],
       "Pike Place": ["Downtown", "Epicodus", "Convention Center", "Space Needle"],
       "Space Needle": ["Downtown", "Pike Place", "Convention Center", "Lenin"],
       "Lenin": ["Frellard", "Space Needle", "Ballard Locks", "Fremont Troll", "Gasworks"],

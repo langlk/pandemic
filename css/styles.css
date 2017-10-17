@@ -1,0 +1,7 @@
+.player-location {
+  font-weight: bold;
+}
+
+button:disabled {
+  color: gray;
+}
