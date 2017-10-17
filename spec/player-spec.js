@@ -60,10 +60,29 @@ describe('player', function() {
 
     it("fully removes infestation if the player knows cure", function() {
       player.location = game.locations["Archie McPhees"];
+      player.location.infestationAmounts["Tribbles"] = 2;
       player.cures["Tribbles"] = true;
       player.treat("Tribbles");
       expect(player.location.infestationAmounts["Tribbles"]).toEqual(0);
     });
+
+    it("marks player as busy for one timeUnit after treating infestation", function() {
+      player.location = game.locations["Archie McPhees"];
+      player.location.infestationAmounts["Tribbles"] = 2;
+      player.treat("Tribbles");
+      expect(player.busy).toEqual(true);
+      jasmine.clock().tick(15001);
+      expect(player.busy).toEqual(false);
+    });
+
+    it("does not allow player to treat if the player is busy", function() {
+      player.location = game.locations["Archie McPhees"];
+      player.location.infestationAmounts["Tribbles"] = 2;
+      player.busy = true;
+      expect(player.treat("Tribbles")).toEqual(false);
+      expect(player.location.infestationAmounts["Tribbles"]).toEqual(2);
+    });
+
   });
 
 

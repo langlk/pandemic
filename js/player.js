@@ -7,7 +7,7 @@ export class Player {
   }
 
   move(destination) {
-    if (this.busy) {
+    if(this.busy) {
       return false;
     } else {
       if(this.location.nextDoor.includes(destination)) {
@@ -24,15 +24,23 @@ export class Player {
   }
 
   treat(infestation) {
-    if(this.location.infestationAmounts[infestation] > 0) {
-      if(this.cures[infestation]) {
-        this.location.infestationAmounts[infestation] = 0;
-      } else {
-        this.location.infestationAmounts[infestation] -= 1;
-      }
-      return true;
-    } else {
+    if(this.busy) {
       return false;
+    } else {
+      if(this.location.infestationAmounts[infestation] > 0) {
+        if(this.cures[infestation]) {
+          this.location.infestationAmounts[infestation] = 0;
+        } else {
+          this.location.infestationAmounts[infestation] -= 1;
+        }
+        this.busy = true;
+        setTimeout(() => {
+          this.busy = false;
+        }, this.timeUnit);
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
