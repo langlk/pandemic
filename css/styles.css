@@ -5,3 +5,19 @@
 button:disabled {
   color: gray;
 }
+
+.U-District {
+  color: purple;
+}
+
+.Capitol-Hill {
+  color: orange;
+}
+
+.Downtown {
+  color: green;
+}
+
+.Frellard {
+  color: red;
+}

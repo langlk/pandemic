@@ -74,11 +74,17 @@ function updateUI(game) {
 
   $(".clock").text(`${Math.floor((Date.now() - startTime) / timeUnit)} Turns`);
 
-  Object.keys(game.player.cures).forEach(function(infestation) {
-    if (game.player.cures[infestation]) {
-      $('#acquired').append(`<li>${infestation}</li>`);
+  Object.keys(game.player.cures).forEach(function(cure) {
+    let infestationObj;
+    game.infestations.forEach(function(infestation) {
+      if (infestation.name === cure) {
+        infestationObj = infestation;
+      }
+    });
+    if (game.player.cures[cure]) {
+      $('#acquired').append(`<li class="${IDify(infestationObj.neighborhood)}">${cure}</li>`);
     } else {
-      $('#needed').append(`<li>${infestation}</li>`);
+      $('#needed').append(`<li class="${IDify(infestationObj.neighborhood)}">${cure}</li>`);
     }
   });
 }
@@ -86,7 +92,8 @@ function updateUI(game) {
 $(document).ready(function() {
   const game = new Game(timeUnit);
   Object.keys(game.locations).forEach(function(name) {
-    $('.locations').append(`<li id=${IDify(name)}>${name}<div class="options"> </div><ul></ul></li>`);
+    let location = game.locations[name];
+    $('.locations').append(`<li class="${IDify(location.neighborhood)}" id=${IDify(name)}>${name}<div class="options"> </div><ul></ul></li>`);
   });
 
   $('#game-start').click(function() {
