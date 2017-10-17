@@ -382,7 +382,7 @@ var Player = exports.Player = function () {
 
 var _game = require("./../js/game.js");
 
-var timeUnit = 500;
+var timeUnit = 1000;
 
 function IDify(string) {
   string = string.split(" ").join("-");
@@ -423,10 +423,16 @@ function updateUI(game) {
     disabled = null;
   }
   $("#" + IDify(playerLocation.name) + " .options").append("<button type=\"button\" id=\"cure\" " + disabled + ">Cure " + playerLocation.infestationDefault + "</button>");
+  $("#cure").click(function () {
+    game.player.cure(playerLocation.infestationDefault);
+  });
   // Create Treat button for any present infestations
   Object.keys(playerLocation.infestationAmounts).forEach(function (infestation) {
     if (playerLocation.infestationAmounts[infestation] > 0) {
       $("#" + IDify(playerLocation.name) + " .options").append("<button type=\"button\" id=\"treat-" + IDify(infestation) + "\">Treat " + infestation + "</button>");
+      $("#treat-" + IDify(infestation)).click(function () {
+        game.player.treat(infestation);
+      });
     }
   });
 }
