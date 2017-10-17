@@ -1,15 +1,25 @@
 export class Player {
-  constructor(startLocation) {
+  constructor(startLocation, timeUnit) {
+    this.busy = false;
     this.location = startLocation;
     this.cures = {"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": false, "Tribbles": false};
+    this.timeUnit = timeUnit;
   }
 
   move(destination) {
-    if(this.location.nextDoor.includes(destination)) {
-      this.location = destination;
-      return true;
-    } else {
+    if (this.busy) {
       return false;
+    } else {
+      if(this.location.nextDoor.includes(destination)) {
+        this.location = destination;
+        this.busy = true;
+        setTimeout(() => {
+          this.busy = false;
+        }, this.timeUnit);
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 

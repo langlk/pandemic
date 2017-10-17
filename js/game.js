@@ -57,7 +57,7 @@ export class Game {
     });
     // Each time a location hits 3, add 1 to neighborhood status. If status hits 5, game is over. If infestation goes down, remove one from status.
     this.neighborhoodStatus = {"Frellard": 0, "Capitol Hill": 0, "Downtown": 0, "U-District": 0};
-    this.player = new Player(this.locations["Epicodus"]);
+    this.player = new Player(this.locations["Epicodus"], this.timeUnit);
   }
 
   spread() {
