@@ -116,6 +116,14 @@ describe('player', function() {
       expect(player.cure("Tiny Velociraptors")).toEqual(false);
       expect(player.cures).toEqual({"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": false, "Tribbles": false});
     });
+
+    it("does not allow a player to cure an infestation they have already cured", function() {
+      player.treated["Tiny Velociraptors"] = true;
+      player.cures["Tiny Velociraptors"] = true;
+      expect(player.cure("Tiny Velociraptors")).toEqual(false);
+      expect(player.cures).toEqual({"Mini Mammoths": false, "Safety Cones": false, "Tiny Velociraptors": true, "Tribbles": false});
+      expect(player.busy).toEqual(false);
+    });
   });
 
 

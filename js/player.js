@@ -50,7 +50,7 @@ export class Player {
     if(this.busy) {
       return false;
     } else {
-      if (this.location.infestationDefault === infestation && this.treated[infestation]) {
+      if (this.location.infestationDefault === infestation && this.treated[infestation] && !this.cures[infestation]) {
         this.cures[infestation] = true;
         this.busy = true;
         setTimeout(() => {
