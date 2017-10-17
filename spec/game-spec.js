@@ -76,4 +76,15 @@ describe("Game", function() {
       expect(game.locationDiscard.length).toEqual(5);
     });
   });
+
+  describe('win', function() {
+    it("returns false if player does not have cures for all infestations", function() {
+      expect(game.win()).toEqual(false);
+    });
+
+    it("returns true if player does have cures for all infestations", function() {
+      game.player.cures = {"Mini Mammoths": true, "Safety Cones": true, "Tiny Velociraptors": true, "Tribbles": true};
+      expect(game.win()).toEqual(true);
+    });
+  });
 });

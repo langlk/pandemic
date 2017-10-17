@@ -127,7 +127,13 @@ export class Game {
   }
 
   win() {
-    
+    for (let i = 0; i < 4; i++) {
+      let infestationName = this.infestations[i].name;
+      if (!this.player.cures[infestationName]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   neighborhoodOverrun() {
