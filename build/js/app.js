@@ -45,20 +45,20 @@ var Game = exports.Game = function () {
       "Suzzallo Library": ["U-District", "Cafe Allegro", "College Inn"],
       "College Inn": ["U-District", "Cafe Allegro", "Suzzallo Library", "Volunteer Park"],
       "Volunteer Park": ["Capitol Hill", "College Inn", "Century Ballroom", "Julias"],
-      "Sizzle Pie": ["Capitol Hill", "Mercury", "Century Ballroom"],
-      "Mercury": ["Capitol Hill", "Sizzle Pie", "Century Ballroom"],
-      "Century Ballroom": ["Capitol Hill", "Sizzle Pie", "Mercury", "Volunteer Park", "Julias"],
       "Julias": ["Capitol Hill", "Volunteer Park", "Century Ballroom", "Convention Center"],
-      "Convention Center": ["Downtown", "Julias", "Pike Place", "Central Library", "Space Needle"],
-      "Central Library": ["Downtown", "Convention Center", "Epicodus"],
-      "Epicodus": ["Downtown", "Central Library", "Pike Place"],
-      "Pike Place": ["Downtown", "Epicodus", "Convention Center", "Space Needle"],
+      "Sizzle Pie": ["Capitol Hill", "Mercury", "Century Ballroom"],
+      "Century Ballroom": ["Capitol Hill", "Sizzle Pie", "Mercury", "Volunteer Park", "Julias"],
+      "Mercury": ["Capitol Hill", "Sizzle Pie", "Century Ballroom"],
       "Space Needle": ["Downtown", "Pike Place", "Convention Center", "Lenin"],
-      "Lenin": ["Frellard", "Space Needle", "Ballard Locks", "Fremont Troll", "Gasworks"],
-      "Gasworks": ["Frellard", "Lenin", "Archie McPhees"],
-      "Ballard Locks": ["Frellard", "Lenin", "Fremont Troll"],
+      "Pike Place": ["Downtown", "Epicodus", "Convention Center", "Space Needle"],
+      "Convention Center": ["Downtown", "Julias", "Pike Place", "Central Library", "Space Needle"],
+      "Epicodus": ["Downtown", "Central Library", "Pike Place"],
+      "Central Library": ["Downtown", "Convention Center", "Epicodus"],
+      "Archie McPhees": ["Frellard", "Fremont Troll", "Neptune Theater"],
       "Fremont Troll": ["Frellard", "Ballard Locks", "Lenin", "Gasworks", "Archie McPhees"],
-      "Archie McPhees": ["Frellard", "Fremont Troll", "Neptune Theater"] };
+      "Ballard Locks": ["Frellard", "Lenin", "Fremont Troll"],
+      "Gasworks": ["Frellard", "Lenin", "Archie McPhees"],
+      "Lenin": ["Frellard", "Space Needle", "Ballard Locks", "Fremont Troll", "Gasworks"] };
     this.locations = {};
     Object.keys(locationInfo).forEach(function (name) {
       var neighborhood = locationInfo[name][0];
@@ -475,7 +475,7 @@ $(document).ready(function () {
   var game = new _game.Game(timeUnit);
   Object.keys(game.locations).forEach(function (name) {
     var location = game.locations[name];
-    $('.locations').append("<li class=\"" + IDify(location.neighborhood) + "\" id=" + IDify(name) + ">" + name + "<div class=\"options\"> </div><ul></ul></li>");
+    $("ul." + IDify(location.neighborhood)).append("<li class=\"" + IDify(location.neighborhood) + "\" id=" + IDify(name) + ">" + name + "<div class=\"options\"> </div><ul></ul></li>");
   });
 
   $('#game-start').click(function () {

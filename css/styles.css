@@ -21,3 +21,85 @@ button:disabled {
 .Frellard {
   color: red;
 }
+
+.locations {
+  padding-top: 3em;
+  width: 900px;
+  height: 900px;
+  border: 1px solid black;
+}
+
+.U-District li, .Capitol-Hill li, .Downtown li, .Frellard li {
+  list-style: none;
+  width: 60%;
+  margin-bottom: 2em;
+  border: 1px solid black;
+}
+
+li#Ravenna-Park {
+  text-align: center;
+}
+
+li#Neptune-Theater {
+  display: inline-block;
+  float: left;
+}
+
+li#Cafe-Allegro {
+  text-align: center;
+}
+
+li#Suzzallo-Library {
+  width: 100%;
+  text-align: right;
+  padding-right: 7em;
+  display: inline-block;
+}
+
+li#Volunteer-Park, li#Century-Ballroom {
+  text-align: center;
+}
+
+li#Sizzle-Pie, li#Mercury {
+  width: 100%;
+  text-align: right;
+  padding-right: 7em;
+  display: inline-block;
+}
+
+ul.Downtown {
+  padding-top: 3em;
+  padding-left: 5em;
+}
+
+li#Space-Needle {
+  text-align: center;
+}
+
+li#Convention-Center, li#Central-Library {
+  text-align: right;
+}
+
+ul.Frellard {
+  padding-left: 3em;
+}
+
+li#Archie-McPhees {
+  margin-top: 3em;
+  width: 100%;
+  text-align: right;
+}
+
+li#Fremont-Troll {
+  width: 100%;
+  text-align: center;
+}
+
+li#Gasworks {
+  width: 80%;
+  text-align: right;
+}
+
+li#Lenin {
+  text-align: center;
+}
