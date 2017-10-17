@@ -8,12 +8,19 @@ export class Location {
   }
 
   infest(infestation) {
+    this.infestHelp(infestation, []);
+  }
+
+  infestHelp(infestation, maxed) {
     if (this.infestationAmounts[infestation] < 3) {
       this.infestationAmounts[infestation] += 1;
     } else {
       // Outbreak!
+      maxed.push(this);
       this.nextDoor.forEach(function(location) {
-        location.infest(infestation);
+        if (!maxed.includes(location)) {
+          location.infestHelp(infestation, maxed);
+        }
       });
     }
   }
