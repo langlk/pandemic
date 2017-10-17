@@ -124,6 +124,18 @@ describe("Game", function() {
       expect(game.locationDraw.length).toEqual(17);
       expect(game.locationDiscard.length).toEqual(3);
     });
+
+    it("sets game outcome as lost and clears intervals if neighborhood is overrun", function() {
+      game.start();
+      Object.keys(game.locations).forEach(function(name) {
+        let location = game.locations[name];
+        if (location.neighborhood === "Downtown") {
+          location.infestationAmounts["Tiny Velociraptors"] = 3;
+        }
+      });
+      jasmine.clock().tick(16001);
+      expect(game.outcome).toEqual("Loss: Downtown was overrun.");
+    });
   });
 
 });
