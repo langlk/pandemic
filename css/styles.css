@@ -33,9 +33,33 @@ button:disabled {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: minmax(50px, auto);
 }
 
+#Ravenna-Park {
+  grid-column: 2 / 2;
+  grid-row: 1;
+}
+
+#Neptune-Theater {
+  grid-column: 1 / 1;
+  grid-row: 2;
+}
+
+#Cafe-Allegro {
+  grid-column: 2 / 3;
+  grid-row: 3;
+}
+
+#Suzzallo-Library {
+  grid-column: 3 / 3;
+  grid-row: 3;
+}
+
+#College-Inn {
+  grid-column: 2/2;
+  grid-row: 4;
+}
 /*.location {
   width: 300px;
   height: 150px;
