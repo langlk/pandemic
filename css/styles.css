@@ -29,6 +29,17 @@ button:disabled {
   border: 1px solid black;
 }
 
+.location {
+  width: 300px;
+  height: 150px;
+}
+
+.infestations {
+  width: 300px;
+  height: 100px;
+  font-size: 10px;
+}
+
 .U-District li, .Capitol-Hill li, .Downtown li, .Frellard li {
   list-style: none;
   width: 60%;
@@ -36,7 +47,7 @@ button:disabled {
   border: 1px solid black;
 }
 
-li#Ravenna-Park {
+/*li#Ravenna-Park {
   text-align: center;
 }
 
@@ -102,4 +113,4 @@ li#Gasworks {
 
 li#Lenin {
   text-align: center;
-}
+}*/

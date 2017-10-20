@@ -93,7 +93,7 @@ $(document).ready(function() {
   const game = new Game(timeUnit);
   Object.keys(game.locations).forEach(function(name) {
     let location = game.locations[name];
-    $(`ul.${IDify(location.neighborhood)}`).append(`<li class="${IDify(location.neighborhood)}" id=${IDify(name)}>${name}<div class="options"> </div><ul></ul></li>`);
+    $(`ul.${IDify(location.neighborhood)}`).append(`<li class="${IDify(location.neighborhood)} location" id=${IDify(name)}>${name}<div class="options"> </div><ul class="infestations"></ul></li>`);
   });
 
   $('#game-start').click(function() {
