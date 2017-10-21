@@ -81,6 +81,30 @@ button:disabled {
   grid-row: 2;
 }
 
+#Convention-Center {
+  grid-column: 3/3;
+  grid-row: 2;
+}
+
+#Space-Needle {
+  grid-column: 2/2;
+  grid-row: 1;
+}
+
+#Central-Library {
+  grid-column: 2/2;
+  grid-row: 3;
+}
+
+#Epicodus {
+  grid-column: 1/1;
+  grid-row: 3;
+}
+
+#Pike-Place {
+  grid-column: 1/1;
+  grid-row: 2;
+}
 /*.location {
   width: 300px;
   height: 150px;
