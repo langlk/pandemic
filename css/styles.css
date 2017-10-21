@@ -2,6 +2,10 @@
   font-weight: bold;
 }
 
+button {
+  font-size: 11px;
+}
+
 button:disabled {
   color: gray;
 }
@@ -34,6 +38,11 @@ button:disabled {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(50px, auto);
+}
+
+.infestations {
+  height: 50px;
+  font-size: 11px;
 }
 
 #Ravenna-Park, #Volunteer-Park {
@@ -103,6 +112,31 @@ button:disabled {
 
 #Pike-Place {
   grid-column: 1/1;
+  grid-row: 2;
+}
+
+#Ballard-Locks {
+  grid-column: 1/1;
+  grid-row: 3;
+}
+
+#Lenin {
+  grid-column: 2/2;
+  grid-row: 4;
+}
+
+#Gasworks {
+  grid-column: 3/3;
+  grid-row: 3
+}
+
+#Archie-McPhees {
+  grid-column: 3/3;
+  grid-row: 1;
+}
+
+#Fremont-Troll {
+  grid-column: 2/2;
   grid-row: 2;
 }
 /*.location {
