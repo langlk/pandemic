@@ -1,4 +1,4 @@
-# Planet Age Calculator
+# Pandemic
 
 ### _Epicodus Practice in JavaScript, October 16, 2017_
 
